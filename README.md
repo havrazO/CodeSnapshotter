@@ -7,7 +7,6 @@
 ## Description
 
 CodeSnapshotter is a utility designed for software developers who leverage Large Language Models (LLMs) for code analysis, debugging, or documentation. It scans a project directory, intelligently filters files and folders based on user-defined rules, and aggregates the relevant source code into a single, well-structured Markdown or text file.
-
 This solves the problem of manually copying and pasting dozens of files into an LLM, preserving the file structure context and making the AI's analysis more accurate and insightful.
 
 ## Features
