@@ -1,0 +1,29 @@
+name: Build WinUI 3 App
+
+on:
+  # This workflow runs on pull requests targeting the master branch
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  # The name of this job will be the name of your status check
+  build-and-sign:
+    runs-on: windows-latest  # WinUI 3 requires a Windows runner
+
+    steps:
+      # 1. Checks out your repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Sets up MSBuild in the environment PATH
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # 3. Restores NuGet packages for the solution
+      - name: Restore NuGet packages
+        run: msbuild ${{ github.workspace }}\CodeSnapshotter.sln /t:Restore /p:Configuration=Release
+
+      # 4. Builds the solution in Release mode for x64
+      # This is the step that reports a "success" or "failure" status
+      - name: Build Solution
+        run: msbuild ${{ github.workspace }}\CodeSnapshotter.sln /p:Configuration=Release /p:Platform=x64 /p:AppxPackageSigningEnabled=false
