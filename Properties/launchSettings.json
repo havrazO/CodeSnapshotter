@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CodeSnapshotter (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "CodeSnapshotter (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

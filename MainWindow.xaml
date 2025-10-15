@@ -1,0 +1,82 @@
+<Window
+    x:Class="CodeSnapshotter.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid RowSpacing="12" Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Spacing="4">
+            <TextBlock Text="Code Snapshotter für KI" Style="{ThemeResource TitleTextBlockStyle}"/>
+            <TextBlock Text="Dieses Tool fasst den gesamten relevanten Quellcode aus einem Projektverzeichnis in einer einzigen Datei zusammen, die für die Analyse durch grosse Sprachmodelle (LLMs) optimiert ist." 
+                       TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Spacing="8">
+            <TextBlock Text="1. Projektverzeichnis auswählen" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{x:Bind ViewModel.SelectedFolderPath, Mode=OneWay}" IsReadOnly="True"/>
+                <Button Grid.Column="1" Content="Verzeichnis..." Command="{x:Bind ViewModel.SelectFolderCommand}"/>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Row="2" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Spacing="4">
+                <TextBlock Text="Dateiendungen einschliessen"/>
+                <TextBox Text="{x:Bind ViewModel.IncludeExtensions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         AcceptsReturn="True" TextWrapping="Wrap" Height="150" PlaceholderText="(Komma-getrennt)"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Spacing="4">
+                <TextBlock Text="Verzeichnisse ausschliessen"/>
+                <TextBox Text="{x:Bind ViewModel.ExcludeDirectories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         AcceptsReturn="True" TextWrapping="Wrap" Height="150" PlaceholderText="(Komma-getrennt)"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Spacing="4">
+                <TextBlock Text="Dateien ausschliessen"/>
+                <TextBox Text="{x:Bind ViewModel.ExcludeFiles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         AcceptsReturn="True" TextWrapping="Wrap" Height="150" PlaceholderText="(Komma-getrennt)"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Spacing="4">
+            <TextBlock Text="2. Ausgabeformat" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <RadioButtons SelectedIndex="{x:Bind ViewModel.OutputFormatIndex, Mode=TwoWay}">
+                <RadioButton Content="Markdown (.md) - Optimiert für KI mit Formatierung"/>
+                <RadioButton Content="Nur-Text (.txt) - Einfacher, unformatierter Text"/>
+            </RadioButtons>
+        </StackPanel>
+
+        <Button Grid.Row="4" 
+                Content="Snapshot generieren" 
+                HorizontalAlignment="Stretch" 
+                Style="{ThemeResource AccentButtonStyle}"
+                Command="{x:Bind ViewModel.GenerateSnapshotCommand}"/>
+
+        <StackPanel Grid.Row="5" Spacing="4" Margin="0,12,0,0">
+            <ProgressBar IsIndeterminate="{x:Bind ViewModel.IsBusy, Mode=OneWay}" Visibility="{x:Bind ViewModel.IsBusy, Mode=OneWay}"/>
+            <TextBlock Text="{x:Bind ViewModel.StatusText, Mode=OneWay}"/>
+        </StackPanel>
+    </Grid>
+</Window>
