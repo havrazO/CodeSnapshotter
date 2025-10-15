@@ -31,7 +31,7 @@ This solves the problem of manually copying and pasting dozens of files into an 
 
 ### Installation
 
-1.  Go to the(https://www.google.com/search?q=https://github.com/%3CYour-Username%3E/CodeSnapshotter/releases) page of this repository.
+1.  Go to the(https://github.com/havrazO/CodeSnapshotter/releases) page of this repository.
 2.  Download the latest `.msix` installer file from the "Assets" section.
 3.  Double-click the `.msix` file to install the application.
 
