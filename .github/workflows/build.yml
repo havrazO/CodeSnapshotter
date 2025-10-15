@@ -1,9 +1,9 @@
 name: Build WinUI 3 App
 
 on:
-  # This workflow runs on pull requests targeting the master branch
+  # This workflow runs on pull requests targeting the main branch
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   # The name of this job will be the name of your status check
@@ -24,6 +24,6 @@ jobs:
         run: msbuild ${{ github.workspace }}\CodeSnapshotter.sln /t:Restore /p:Configuration=Release
 
       # 4. Builds the solution in Release mode for x64
-      # This is the step that reports a "success" or "failure" status
+      #    FIX: Added /p:PublishTrimmed=false to disable the conflicting optimization
       - name: Build Solution
-        run: msbuild ${{ github.workspace }}\CodeSnapshotter.sln /p:Configuration=Release /p:Platform=x64 /p:AppxPackageSigningEnabled=false
+        run: msbuild ${{ github.workspace }}\CodeSnapshotter.sln /p:Configuration=Release /p:Platform=x64 /p:AppxPackageSigningEnabled=false /p:PublishTrimmed=false
