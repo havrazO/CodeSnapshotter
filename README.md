@@ -1,8 +1,8 @@
-# CodeSnapshotter für KI
+# CodeSnapshotter fÃ¼r KI
 
 **A modern Windows (WinUI 3) application to consolidate source code from a project directory into a single, LLM-optimized file.**
 
-![assets/screenshot.png](assets/screenshot.png)
+![assets/screenshot.png](Assets/screenshot.png)
 
 ## Description
 
