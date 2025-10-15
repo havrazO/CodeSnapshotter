@@ -9,7 +9,7 @@
 
   <Identity
     Name="1d5ed72e-8bf3-4b66-8bf7-8957dc9f82e1"
-    Publisher="CN=hevra"
+    Publisher="CN=havaio"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="1d5ed72e-8bf3-4b66-8bf7-8957dc9f82e1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
